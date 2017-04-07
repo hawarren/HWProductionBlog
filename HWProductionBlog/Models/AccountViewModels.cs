@@ -66,7 +66,7 @@ namespace HWProductionBlog.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "User Name
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]
