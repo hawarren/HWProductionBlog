@@ -50,19 +50,19 @@ namespace HWProductionBlog
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "xZ6vFlU0jczOsRH9Z0HekfQ0B",
+               consumerSecret: "Yh9xh69JY7NyzNl7XgCYLWmRUnLnoQxB2PxekMZW305mWh8lUq");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1506688819381578",
+               appSecret: "c8641041b982197ab8a36b79b6c96f28");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "113781749497-plhv5qlr74ftkhn5p1obboiseisc3vak.apps.googleusercontent.com",
+                ClientSecret = "O2NfZr9lhRdjtqpZ2cCwtc4h"
+            });
         }
     }
 }

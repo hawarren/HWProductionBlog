@@ -46,7 +46,7 @@ namespace HWProductionBlog.Models
 
         public DbSet<BlogPost> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+       // public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
     }
 }

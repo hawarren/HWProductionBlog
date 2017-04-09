@@ -40,7 +40,7 @@ namespace HWProductionBlog.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
             ViewBag.PostId = new SelectList(db.Posts, "Id", "Title");
             return View();
         }
@@ -60,7 +60,7 @@ namespace HWProductionBlog.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName", comment.AuthorId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
             ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
@@ -77,7 +77,7 @@ namespace HWProductionBlog.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName", comment.AuthorId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
             ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
@@ -96,7 +96,7 @@ namespace HWProductionBlog.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName", comment.AuthorId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
             ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
