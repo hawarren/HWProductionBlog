@@ -41,13 +41,14 @@
                             @Html.DisplayFor(modelItem => item.Title)
                         </h2>
                         <h3 class="post-subtitle">
-                            @Html.DisplayFor(modelItem => item.Body)
+                            @*@Html.DisplayFor(modelItem => item.Body)*@
+                            @Html.Raw(item.Body)
                         </h3>
                     </a>
 
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { slug = item.Slug }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Read More...", "Details", new { slug = item.Slug }) |
+                    @Html.ActionLink( "Delete", "Delete", new { id = item.Id })
                     <p class="post-meta">Posted by Hanif Warren on @Html.DisplayFor(modelItem => item.Created)</p>
                 </div>
                 <hr>
