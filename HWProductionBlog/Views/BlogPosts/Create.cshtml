@@ -1,16 +1,18 @@
-﻿@model HWProductionBlog.Models.BlogPost
+﻿@using System.Data.Entity;
+@using System.Linq;
+@model HWProductionBlog.Models.BlogPost
 
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@using System.Data.Entity;
+@using System.Linq;
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>BlogPost</h4>
         <hr />
@@ -39,18 +41,20 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "editor", rows = "10" } })
+                
+                          
+                 @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "editor", rows = "10" } })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -90,27 +94,28 @@
 <script src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
 <script type="text/javascript">
-$(function () {
-    tinymce.init({
-        forced_root_block: false,
-selector: '#editor'
-});
-});
+    $(function () {
+        tinymce.init({
+            forced_root_block: false,
+            selector: '#editor'
+        });
+    });
 </script>
 
 <script>
-           $(function () {
-               $("#TextBody").tinymce({});
-           });
+    $(function () {
+        //  $("#TextBody").tinymce({});
+        $("#editor").tinymce({});
+    });
 
-     var loadFile = function(event) {
-       var reader = new FileReader();
-       reader.onload = function(){
-         var output = document.getElementById('output');
-         output.src = reader.result;
-       };
-       reader.readAsDataURL(event.target.files[0]);
-     };
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
 </script>
 
 }

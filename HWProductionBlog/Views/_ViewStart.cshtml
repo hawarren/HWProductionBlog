@@ -1,8 +1,5 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@*@{ 
+﻿
+@{
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
     var action = HttpContext.Current.Request.RequestContext.RouteData.Values["Action"].ToString();
     string cLayout = "";
@@ -11,5 +8,23 @@
     {
         cLayout = "~/Views/Shared/_Layout.cshtml";
     }
-    Layout =cLayout;
-}*@
+    else if (action == "Details")
+    {
+        cLayout = "~/Views/Shared/_Post.cshtml";
+    }
+
+    else if (action == "About")
+    {
+        cLayout = "~/Views/Shared/_about.cshtml";
+    }
+
+
+    else
+    {
+        cLayout = "~/Views/Shared/_Index.cshtml";
+    }
+
+
+
+    Layout = cLayout;
+}
