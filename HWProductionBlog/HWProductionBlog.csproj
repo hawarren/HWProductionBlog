@@ -196,6 +196,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\blog a2.pubxml" />
     <None Include="Views\Shared\_about.cshtml" />
     <Content Include="contact.html" />
     <Content Include="Content\bootstrap.css" />

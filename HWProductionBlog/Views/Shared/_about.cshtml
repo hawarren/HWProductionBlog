@@ -47,9 +47,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        @Html.Partial("_LoginPartial")
-                    </li>
+                   
 
                     <li>
                         <a href="~/home/index">Home</a>
@@ -63,9 +61,8 @@
                     <li>
                         <a href="~/home/contact">Contact</a>
                     </li>
-
                     <li>
-                        <a href="~/account/login">Log In</a>
+                        @Html.Partial("_LoginPartial")
                     </li>
                 </ul>
             </div>
