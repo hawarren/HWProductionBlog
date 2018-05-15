@@ -165,3 +165,7 @@
         </div>
     </div>
 </article>
+@if (Model.MediaUrl != null)
+{
+<img class="img-responsive" src="@Model.MediaUrl" alt=""/>
+}

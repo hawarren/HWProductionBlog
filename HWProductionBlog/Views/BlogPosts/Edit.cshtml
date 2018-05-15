@@ -7,10 +7,10 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "BlogPosts", FormMethod.Post, new { enctype = "Multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>BlogPost</h4>
         <hr />
@@ -42,27 +42,29 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "editor", rows = "10" } })
+                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "editor", rows = "10" } })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.MediaUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MediaUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MediaUrl, "", new { @class = "text-danger" })
-            </div>
+            @*<div class="col-md-10">
+                    @Html.EditorFor(model => model.MediaUrl, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MediaUrl, "", new { @class = "text-danger" })
+            *@
+            <input name="image" type="file" class="form-control" id="fileUpload" />
+                </div>
         </div>
 
         <div class="form-group">
@@ -80,7 +82,6 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
 }
 
 <div>
@@ -92,26 +93,27 @@
 <script src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
 <script type="text/javascript">
-$(function () {
-    tinymce.init({forced_root_block: false,
-selector: '#editor'
-});
-});
+    $(function () {
+        tinymce.init({
+            forced_root_block: false,
+            selector: '#editor'
+        });
+    });
 </script>
 
 <script>
-           $(function () {
-               $("#TextBody").tinymce({});
-           });
+    $(function () {
+        $("#TextBody").tinymce({});
+    });
 
-     var loadFile = function(event) {
-       var reader = new FileReader();
-       reader.onload = function(){
-         var output = document.getElementById('output');
-         output.src = reader.result;
-       };
-       reader.readAsDataURL(event.target.files[0]);
-     };
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
 </script>
 
 }

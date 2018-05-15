@@ -34,7 +34,10 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             @foreach (var item in Model)
             {
-
+                if (item.MediaUrl != null)
+                {
+                    <img class="img-responsive" src="@item.MediaUrl" alt="" />
+                }
                 <div class="post-preview">
                     <a href="@Url.Action("Details", "BlogPosts", new { slug = item.Slug })">
                         <h2 class="post-title">
@@ -48,7 +51,7 @@
 
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Read More...", "Details", new { slug = item.Slug }) |
-                    @Html.ActionLink( "Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     <p class="post-meta">Posted by Hanif Warren on @Html.DisplayFor(modelItem => item.Created)</p>
                 </div>
                 <hr>
