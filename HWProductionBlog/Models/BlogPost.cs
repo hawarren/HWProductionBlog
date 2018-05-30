@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace HWProductionBlog.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class BlogPost
     {
         //new blog post and this sets up data structure to hold all the comments using a hashset
@@ -15,7 +17,9 @@ namespace HWProductionBlog.Models
         }
 
         public int Id { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy hh:mmtt}", ApplyFormatInEditMode = true)]
         public DateTimeOffset Created { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy hh:mmtt}", ApplyFormatInEditMode = true)]
         public DateTimeOffset Updated { get; set; }
 
         [AllowHtml]
