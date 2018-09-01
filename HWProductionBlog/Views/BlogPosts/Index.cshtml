@@ -19,11 +19,18 @@
         </button>
     </div>
 }
+@if (ViewBag.Search != null)
+{
+<p>You searched for <u><b>"@ViewBag.Search"</b></u></p>
+}
 
-
+@if (User.IsInRole("Admin"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
+
 
 
 
