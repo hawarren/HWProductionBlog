@@ -77,7 +77,7 @@ namespace HWProductionBlog.Controllers
         }
 
         // POST: BlogPosts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -109,6 +109,12 @@ namespace HWProductionBlog.Controllers
                 blogPost.Slug = Slug;
 
                 blogPost.Created = DateTimeOffset.Now;
+
+
+                if (blogPost.Updated == null)
+                {
+                    blogPost.Updated = blogPost.Created;
+                }
                 db.Posts.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -133,7 +139,7 @@ namespace HWProductionBlog.Controllers
         }
 
         // POST: BlogPosts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -150,8 +156,14 @@ namespace HWProductionBlog.Controllers
                 }
                 if (db.Posts.Any(p => p.Slug == Slug))
                 {
+                    var foundPosts = db.Posts.Where(p => p.Slug == Slug).AsNoTracking();
+                    if (foundPosts.Count() == 1
+                        && foundPosts.AsNoTracking().FirstOrDefault(p => p.Slug == Slug).Id != blogPost.Id //if our matching title is also our matching post (by pk)
+                        ) {
                     ModelState.AddModelError("Title", "The title must be unique");
                     return View(blogPost);
+                    }
+
                 }
                 if (ImageUploadValidator.IsWebFriendlyImage(image))
                 {
@@ -160,8 +172,9 @@ namespace HWProductionBlog.Controllers
                     blogPost.MediaUrl = "/Uploads/" + fileName;
                 }
 
-
+                
                 blogPost.Slug = Slug;
+                blogPost.Updated = DateTimeOffset.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
